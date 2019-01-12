@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:background="#F09008"
+        android:layout_gravity="top"
+        android:id="@+id/level"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
+        android:onClick="onClick"
+        android:text="事故分级"
+        android:textSize="30sp"
+        android:layout_weight="1"
+        android:layout_marginTop="80dp"
+        />
+
+    <Button
+        android:background="#F09008"
+        android:id="@+id/report"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="80dp"
+        android:onClick="onClick"
+        android:text="报告责任"
+        android:textSize="30sp"
+        android:layout_weight="1"/>
+
+    <Button
+        android:background="#F09008"
+        android:layout_gravity="bottom"
+        android:id="@+id/example"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
+        android:layout_weight="1"
+        android:onClick="onClick"
+        android:text="典型案列"
+        android:textSize="30sp"
+        android:layout_marginBottom="80dp"
+        />
+
+
+</LinearLayout>

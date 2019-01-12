@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="danwei">
+        <item>Bq</item>
+        <item>Ci</item>
+        <item>mCi</item>
+        <item>uCi</item>
+    </string-array>
+
+    <string-array name="absorptdose">
+        <item>Gy/h</item>
+        <item>rad</item>
+    </string-array>
+
+    <string-array name="distance">
+        <item>cm</item>
+        <item>m</item>
+    </string-array>
+
+    <string-array name="material">
+        <item>无屏蔽</item>
+        <item>铅屏蔽</item>
+        <item>铁屏蔽</item>
+        <item>混凝土</item>
+    </string-array>
+</resources>

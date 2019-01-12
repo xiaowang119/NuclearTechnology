@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id = "@+id/aa"
+        android:title="放行"
+        />
+    <item
+        android:id = "@+id/bb"
+        android:title="退运"
+        />
+    <item
+        android:id = "@+id/cc"
+        android:title="销毁"
+        />
+    <item
+        android:id = "@+id/dd"
+        android:title="移交环保部门"
+        />
+    <item
+        android:id = "@+id/ee"
+        android:title="移交公安部门"
+        />
+</menu>

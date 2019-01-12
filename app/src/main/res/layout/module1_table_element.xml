@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="30dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    tools:context="module1.TableOfElements">
+
+    <module1.PTofElememt
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/pt_table" />
+
+    <Button
+        android:layout_width="53dp"
+        android:layout_height="65dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginTop="13dp"
+        android:background="#00000000"
+        android:id="@+id/bt_check"
+        />
+
+</FrameLayout>

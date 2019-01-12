@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/showArea"
+        >
+        <TextView
+            android:id="@+id/chapter_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ChapterName"
+            android:textSize="18sp"
+            android:padding="8dp"
+            android:background="#E7928F"
+            />
+
+    </LinearLayout>
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical"
+       android:id="@+id/hideArea"
+       >
+
+
+       <TextView
+
+           android:id="@+id/textInChapter"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:lineSpacingExtra="3dp"
+           android:lineSpacingMultiplier="1.2"
+           android:padding="8dp"
+           android:text="textInChapter"
+           android:textSize="15sp" />
+
+   </LinearLayout>
+
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="vertical"-->
+    <!--&gt;-->
+    <!--<TextView-->
+
+    <!--android:id="@+id/textInChapter"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:padding="8dp"-->
+    <!--android:text="textInChapter"-->
+    <!--android:textSize="15sp"-->
+    <!--android:visibility="gone"-->
+    <!--/>-->
+    <!--</LinearLayout>-->
+
+
+
+</LinearLayout>

@@ -1,0 +1,276 @@
+﻿package com.database;
+
+import java.util.Vector;
+
+import org.omg.CORBA.StructMember;
+
+public class Query {
+	private Vector<StructDecay> datasourceDecays;   //需要查找的数据源
+	
+	public Query(Vector<StructDecay>decays)
+	{
+		datasourceDecays = decays;
+	}
+	/*
+	 * 函数功能：  通过核素查询，核素的符号和核素的质量数
+	 */
+	public Vector<StructDecay> findByNuclide(int queryType,String str)
+	{
+		Vector<StructDecay> resultDecays = new Vector<StructDecay>();
+		switch(queryType)
+		{
+		case 1:
+			resultDecays = findByParentName(str);
+			break;
+		case 2:
+			resultDecays = findByParentMass(str);
+			break;
+		case 3:
+			resultDecays = findBySonName(str);
+			break;
+		case 4:
+			resultDecays = findBySonMass(str);
+		}
+		return resultDecays;
+	}
+	/*
+	 * 函数功能：  衰变产物查询
+	 */
+	public Vector<StructDecay> findByEnergy(int energyType,String energy,String energyRange,String intensity,String intensityRange)
+	{
+		Vector<StructDecay> resultDecays = new Vector<StructDecay>();
+		switch(energyType)
+		{
+		case 1:
+			resultDecays = findByAlphaEnergy(energy, energyRange, intensity, intensityRange);
+			break;
+		case 2:
+			resultDecays = findByBetaEnergy(energy, energyRange, intensity, intensityRange);
+			break;
+		case 3:
+			resultDecays = findByPostiveBetaEnergy(energy, energyRange, intensity, intensityRange);
+			break;
+		case 4:
+			resultDecays = findByGammaEnergy(energy, energyRange, intensity, intensityRange);
+		}
+		return resultDecays;
+	}
+	/*
+	 * 函数功能：   通过母核的元素符号查询
+	 */
+	private Vector<StructDecay>findByParentName(String nuclidename)
+	{
+		Vector<StructDecay> resultdecays = new Vector<StructDecay>();
+		for(int i = 0;i<datasourceDecays.size();i++)
+		{
+			if(datasourceDecays.elementAt(i).getParentName().equals(nuclidename))
+				resultdecays.add(datasourceDecays.elementAt(i));
+		}
+		return resultdecays;
+	}
+	/*
+	 * 函数功能：   通过母核的质量数查询
+	 */
+	private Vector<StructDecay>findByParentMass(String nuclideMass)
+	{
+		Vector<StructDecay> resultdecays = new Vector<StructDecay>();
+		for(int i = 0;i<datasourceDecays.size();i++)
+		{
+			if(datasourceDecays.elementAt(i).getParentMass().equals(nuclideMass))
+				resultdecays.add(datasourceDecays.elementAt(i));
+		}
+		return resultdecays;
+	}
+	/*
+	 * 函数功能：   通过子核的元素符号查询
+	 */
+	private Vector<StructDecay>findBySonName(String nuclidename)
+	{
+		Vector<StructDecay> resultdecays = new Vector<StructDecay>();
+		for(int i = 0;i<datasourceDecays.size();i++)
+		{
+			StructDecay strcutDecay = new StructDecay();
+			strcutDecay.setParentMass(datasourceDecays.elementAt(i).getParentMass());
+			strcutDecay.setParentName(datasourceDecays.elementAt(i).getParentName());
+			Vector<SonNuclide> son = new Vector<SonNuclide>();
+			for(int j = 0;j<datasourceDecays.elementAt(i).getSoNuclides().size();j++)
+			{
+				if(datasourceDecays.elementAt(i).getSoNuclides().elementAt(j).getSonName().equals(nuclidename))
+				{
+					son.add(datasourceDecays.elementAt(i).getSoNuclides().elementAt(j));
+
+				}
+			}
+			if(son.size()!=0)
+			{
+				strcutDecay.setSoNuclides(son);
+				resultdecays.add(strcutDecay);
+			}
+		}
+		return resultdecays;
+	}
+	/*
+	 * 函数功能：   通过母核的质量数查询
+	 */
+	private Vector<StructDecay>findBySonMass(String nuclideMass)
+	{
+		Vector<StructDecay> resultdecays = new Vector<StructDecay>();
+		for(int i = 0;i<datasourceDecays.size();i++)
+		{
+			StructDecay strcutDecay = new StructDecay();
+			strcutDecay.setParentMass(datasourceDecays.elementAt(i).getParentMass());
+			strcutDecay.setParentName(datasourceDecays.elementAt(i).getParentName());
+			Vector<SonNuclide> son = new Vector<SonNuclide>();
+			for(int j = 0;j<datasourceDecays.elementAt(i).getSoNuclides().size();j++)
+			{
+				if(datasourceDecays.elementAt(i).getSoNuclides().elementAt(j).getSonMass().equals(nuclideMass))
+				{
+					son.add(datasourceDecays.elementAt(i).getSoNuclides().elementAt(j));
+
+				}
+			}
+			if(son.size()!=0)
+			{
+				strcutDecay.setSoNuclides(son);
+				resultdecays.add(strcutDecay);
+			}
+		}
+		return resultdecays;
+	}
+	private Vector<StructDecay> findByGammaEnergy(String energy,String energyrange,String intensity,String intensityrange)
+	{
+		Vector<StructDecay> resultDecay = new Vector<StructDecay>();
+		double leftenergy = Double.parseDouble(energy) - Double.parseDouble(energyrange);
+		double rightenergy = Double.parseDouble(energy) + Double.parseDouble(energyrange);
+		double leftintensity = Double.parseDouble(intensity) - Double.parseDouble(intensityrange);
+		double rightintesity = Double.parseDouble(intensity) + Double.parseDouble(intensityrange);
+		for(int i = 0;i<datasourceDecays.size();i++)
+		{
+			StructDecay strcutDecay = new StructDecay();
+			strcutDecay.setParentMass(datasourceDecays.elementAt(i).getParentMass());
+			strcutDecay.setParentName(datasourceDecays.elementAt(i).getParentName());
+			Vector<SonNuclide> son = new Vector<SonNuclide>();
+			for(int j = 0;j<datasourceDecays.elementAt(i).getSoNuclides().size();j++)
+			{
+				for(int k = 0;k<datasourceDecays.elementAt(i).getSoNuclides().elementAt(i).getGammaEnergyVector().size();k++)
+				{
+					double energyDouble = Double.parseDouble(datasourceDecays.elementAt(i).getSoNuclides().elementAt(i).getGammaEnergyVector().elementAt(k));
+					double intensityDouble = Double.parseDouble(datasourceDecays.elementAt(i).getSoNuclides().elementAt(i).getGammaIntensityVector().elementAt(k));
+					if(leftenergy<energyDouble&&rightenergy>energyDouble&&leftintensity<intensityDouble&&rightintesity>intensityDouble)
+					{
+						son.add(datasourceDecays.elementAt(i).getSoNuclides().elementAt(j));
+	
+					}
+				}
+			}
+			if(son.size()!=0)
+			{
+				strcutDecay.setSoNuclides(son);
+				resultDecay.add(strcutDecay);
+			}
+		}
+		return resultDecay;
+	}
+	private Vector<StructDecay> findByBetaEnergy(String energy,String energyrange,String intensity,String intensityrange)
+	{
+		Vector<StructDecay> resultDecay = new Vector<StructDecay>();
+		double leftenergy = Double.parseDouble(energy) - Double.parseDouble(energyrange);
+		double rightenergy = Double.parseDouble(energy) + Double.parseDouble(energyrange);
+		double leftintensity = Double.parseDouble(intensity) - Double.parseDouble(intensityrange);
+		double rightintesity = Double.parseDouble(intensity) + Double.parseDouble(intensityrange);
+		for(int i = 0;i<datasourceDecays.size();i++)
+		{
+			StructDecay strcutDecay = new StructDecay();
+			strcutDecay.setParentMass(datasourceDecays.elementAt(i).getParentMass());
+			strcutDecay.setParentName(datasourceDecays.elementAt(i).getParentName());
+			Vector<SonNuclide> son = new Vector<SonNuclide>();
+			for(int j = 0;j<datasourceDecays.elementAt(i).getSoNuclides().size();j++)
+			{
+				for(int k = 0;k<datasourceDecays.elementAt(i).getSoNuclides().elementAt(i).getBetaEnergyVector().size();k++)
+				{
+					double energyDouble = Double.parseDouble(datasourceDecays.elementAt(i).getSoNuclides().elementAt(i).getBetaEnergyVector().elementAt(k));
+					double intensityDouble = Double.parseDouble(datasourceDecays.elementAt(i).getSoNuclides().elementAt(i).getBetaIntenistyVector().elementAt(k));
+					if(leftenergy<energyDouble&&rightenergy>energyDouble&&leftintensity<intensityDouble&&rightintesity>intensityDouble)
+					{
+						son.add(datasourceDecays.elementAt(i).getSoNuclides().elementAt(j));
+	
+					}
+				}
+			}
+			if(son.size()!=0)
+			{
+				strcutDecay.setSoNuclides(son);
+				resultDecay.add(strcutDecay);
+			}
+		}
+		return resultDecay;
+	}
+	private Vector<StructDecay> findByPostiveBetaEnergy(String energy,String energyrange,String intensity,String intensityrange)
+	{
+		Vector<StructDecay> resultDecay = new Vector<StructDecay>();
+		double leftenergy = Double.parseDouble(energy) - Double.parseDouble(energyrange);
+		double rightenergy = Double.parseDouble(energy) + Double.parseDouble(energyrange);
+		double leftintensity = Double.parseDouble(intensity) - Double.parseDouble(intensityrange);
+		double rightintesity = Double.parseDouble(intensity) + Double.parseDouble(intensityrange);
+		for(int i = 0;i<datasourceDecays.size();i++)
+		{
+			StructDecay strcutDecay = new StructDecay();
+			strcutDecay.setParentMass(datasourceDecays.elementAt(i).getParentMass());
+			strcutDecay.setParentName(datasourceDecays.elementAt(i).getParentName());
+			Vector<SonNuclide> son = new Vector<SonNuclide>();
+			for(int j = 0;j<datasourceDecays.elementAt(i).getSoNuclides().size();j++)
+			{
+				for(int k = 0;k<datasourceDecays.elementAt(i).getSoNuclides().elementAt(i).getPostiveBetaEnergyVector().size();k++)
+				{
+					double energyDouble = Double.parseDouble(datasourceDecays.elementAt(i).getSoNuclides().elementAt(i).getPostiveBetaEnergyVector().elementAt(k));
+					double intensityDouble = Double.parseDouble(datasourceDecays.elementAt(i).getSoNuclides().elementAt(i).getPostiveBetaIntensityVector().elementAt(k));
+					if(leftenergy<energyDouble&&rightenergy>energyDouble&&leftintensity<intensityDouble&&rightintesity>intensityDouble)
+					{
+						son.add(datasourceDecays.elementAt(i).getSoNuclides().elementAt(j));
+	
+					}
+				}
+			}
+			if(son.size()!=0)
+			{
+				strcutDecay.setSoNuclides(son);
+				resultDecay.add(strcutDecay);
+			}
+		}
+		return resultDecay;
+	}
+	private Vector<StructDecay> findByAlphaEnergy(String energy,String energyrange,String intensity,String intensityrange)
+	{
+		Vector<StructDecay> resultDecay = new Vector<StructDecay>();
+		double leftenergy = Double.parseDouble(energy) - Double.parseDouble(energyrange);
+		double rightenergy = Double.parseDouble(energy) + Double.parseDouble(energyrange);
+		double leftintensity = Double.parseDouble(intensity) - Double.parseDouble(intensityrange);
+		double rightintesity = Double.parseDouble(intensity) + Double.parseDouble(intensityrange);
+		for(int i = 0;i<datasourceDecays.size();i++)
+		{
+			StructDecay strcutDecay = new StructDecay();
+			strcutDecay.setParentMass(datasourceDecays.elementAt(i).getParentMass());
+			strcutDecay.setParentName(datasourceDecays.elementAt(i).getParentName());
+			Vector<SonNuclide> son = new Vector<SonNuclide>();
+			for(int j = 0;j<datasourceDecays.elementAt(i).getSoNuclides().size();j++)
+			{
+				for(int k = 0;k<datasourceDecays.elementAt(i).getSoNuclides().elementAt(i).getAlphaEnergyVector().size();k++)
+				{
+					double energyDouble = Double.parseDouble(datasourceDecays.elementAt(i).getSoNuclides().elementAt(i).getAlphaEnergyVector().elementAt(k));
+					double intensityDouble = Double.parseDouble(datasourceDecays.elementAt(i).getSoNuclides().elementAt(i).getAlphaIntensityVector().elementAt(k));
+					if(leftenergy<energyDouble&&rightenergy>energyDouble&&leftintensity<intensityDouble&&rightintesity>intensityDouble)
+					{
+						son.add(datasourceDecays.elementAt(i).getSoNuclides().elementAt(j));
+	
+					}
+				}
+			}
+			if(son.size()!=0)
+			{
+				strcutDecay.setSoNuclides(son);
+				resultDecay.add(strcutDecay);
+			}
+		}
+		return resultDecay;
+	}
+}

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:text="出现可能危及核设施安全运行的工况或事件，核设施进入应急待命状态"
+                android:textSize="20sp"
+                />
+            <Button
+                android:layout_gravity="center_vertical"
+                android:id="@+id/module5Response1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="IV级\n响应"
+                android:textSize="30sp"
+                android:onClick="onClick"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/module5Responsell1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="3dp"
+                android:paddingLeft="7dp"
+                android:text="@string/nuclearResponse1"
+                android:textColor="#114074"
+                android:textSize="16sp"
+                android:visibility="visible" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:text="当核设施出现或可能出现放射性物质释放，事故后果影响范围仅限于核设施场区局部区域，核设施进入厂房应急状态"
+                android:textSize="20sp"
+                />
+            <Button
+                android:id="@+id/module5Response2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="III级\n响应"
+                android:layout_gravity="center_vertical"
+                android:textSize="30sp"
+                android:onClick="onClick"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/module5Responsell2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="3dp"
+                android:paddingLeft="7dp"
+                android:text="@string/nuclearResponse2"
+                android:textColor="#114074"
+                android:textSize="16sp"
+                android:visibility="visible" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:text="当核设施出现或可能出现放射性物质释放，事故后果影响扩大到整个场址区域（场内），但尚未对场址区域外公众和环境造成严重影响，核设施进入场区应急状态"
+                android:textSize="20sp"
+                />
+            <Button
+                android:layout_gravity="center_vertical"
+                android:id="@+id/module5Response3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="II级\n响应"
+                android:textSize="30sp"
+                android:onClick="onClick"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/module5Responsell3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="3dp"
+                android:paddingLeft="7dp"
+                android:text="@string/nuclearResponse3"
+                android:textColor="#114074"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:text="当核设施出现或可能出现向环境释放大量放射性物质，事故后果超越场区边界，可能严重危及公众健康和环境安全，进入场外应急状态"
+                android:textSize="20sp"
+                />
+            <Button
+                android:layout_gravity="center_vertical"
+                android:id="@+id/module5Response4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="I级\n响应"
+                android:textSize="30sp"
+                android:onClick="onClick"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/module5Responsell4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="3dp"
+                android:paddingLeft="7dp"
+                android:text="@string/nuclearResponse4"
+                android:textColor="#114074"
+                android:textSize="16sp"
+                 />
+        </LinearLayout>
+
+
+
+
+
+
+
+    </LinearLayout>
+
+
+
+</ScrollView>
